@@ -1,0 +1,143 @@
+@startuml Database Schema
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam linetype ortho
+
+title IFA Database Schema (PostgreSQL)
+
+entity "sellers" as sellers {
+  * id : text <<PK>> [sel_xxx]
+  --
+  * email : text <<unique>>
+  * password_hash : text
+  name : text
+  status : text [active|suspended]
+  plan : text [free|pro]
+  * created_at : timestamptz
+  * updated_at : timestamptz
+}
+
+entity "etsy_connections" as etsy {
+  * id : text <<PK>> [etsy_xxx]
+  --
+  * seller_id : text <<FK>>
+  * shop_id : text
+  shop_name : text
+  * access_token_encrypted : text
+  * refresh_token_encrypted : text
+  * token_expires_at : timestamptz
+  scopes : text[]
+  status : text [active|expired|revoked]
+  last_sync_at : timestamptz
+  * created_at : timestamptz
+  --
+  <<unique>> (seller_id, shop_id)
+}
+
+entity "products" as products {
+  * id : text <<PK>> [prod_xxx]
+  --
+  * seller_id : text <<FK>>
+  * etsy_listing_id : text
+  * title : text
+  description : text
+  price : numeric(10,2)
+  quantity : integer
+  state : text [active|draft|sold_out]
+  tags : text[]
+  images : jsonb
+  raw_data : jsonb
+  synced_at : timestamptz
+  * created_at : timestamptz
+  --
+  <<unique>> (seller_id, etsy_listing_id)
+}
+
+entity "agents" as agents {
+  * id : text <<PK>> [agt_xxx]
+  --
+  * seller_id : text <<FK>> <<unique>>
+  * name : text
+  * status : text [provisioning|active|paused|error]
+  * workspace_path : text
+  config : jsonb
+  soul_instructions : text
+  * created_at : timestamptz
+  * updated_at : timestamptz
+}
+
+entity "agent_sessions" as sessions {
+  * agent_id : text <<PK>> <<FK>>
+  --
+  * session_id : text
+  last_run_at : timestamptz
+  * created_at : timestamptz
+}
+
+entity "agent_inbox" as inbox {
+  * id : text <<PK>> [msg_xxx]
+  --
+  * agent_id : text <<FK>>
+  * kind : text [seller_message|system_tick|etsy_event|customer_message]
+  * payload : jsonb
+  * status : text [queued|processing|done|failed]
+  priority : integer [0]
+  source : text [whatsapp|telegram|dashboard|system]
+  attempt_count : integer [0]
+  available_at : timestamptz
+  * created_at : timestamptz
+  processed_at : timestamptz
+}
+
+entity "agent_events" as events {
+  * id : text <<PK>> [evt_xxx]
+  --
+  * agent_id : text <<FK>>
+  * event_type : text [message|response|tool_use|error]
+  content : text
+  metadata : jsonb
+  * created_at : timestamptz
+}
+
+entity "messaging_channels" as channels {
+  * id : text <<PK>> [ch_xxx]
+  --
+  * seller_id : text <<FK>>
+  * platform : text [whatsapp|telegram]
+  * platform_id : text
+  status : text [pending|connected|disconnected]
+  * created_at : timestamptz
+  --
+  <<unique>> (seller_id, platform)
+}
+
+' Relationships
+sellers ||--o{ etsy : "has"
+sellers ||--o{ products : "owns"
+sellers ||--o| agents : "has one"
+sellers ||--o{ channels : "connects"
+
+agents ||--|| sessions : "has"
+agents ||--o{ inbox : "receives"
+agents ||--o{ events : "logs"
+
+etsy }o--|| sellers : "belongs to"
+products }o--|| sellers : "belongs to"
+
+note right of sellers
+  Passwords hashed with
+  bcrypt (12 rounds)
+end note
+
+note right of etsy
+  Tokens encrypted with
+  AES-256-GCM
+end note
+
+note right of inbox
+  Queue pattern with atomic
+  claiming via FOR UPDATE
+  SKIP LOCKED
+end note
+
+@enduml

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "etsy": {
+      "command": "npx",
+      "args": ["-y", "etsy-mcp-server"],
+      "env": {
+        "ETSY_API_KEY": "{{ETSY_API_KEY}}",
+        "ETSY_ACCESS_TOKEN": "{{ETSY_ACCESS_TOKEN}}",
+        "ETSY_SHOP_ID": "{{ETSY_SHOP_ID}}"
+      }
+    }
+  }
+}

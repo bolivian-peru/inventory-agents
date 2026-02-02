@@ -1,0 +1,145 @@
+@startuml State Diagrams
+!theme plain
+skinparam backgroundColor #FEFEFE
+
+title IFA State Diagrams
+
+== Seller Account States ==
+
+state "Seller Account" as SellerState {
+    [*] --> Registering : POST /auth/register
+
+    Registering --> Active : registration success
+    Registering --> [*] : validation error
+
+    Active --> Active : normal operations
+    Active --> Suspended : admin action / violation
+
+    Suspended --> Active : admin reinstates
+    Suspended --> [*] : account deleted
+}
+
+== Etsy Connection States ==
+
+state "Etsy Connection" as EtsyState {
+    [*] --> Initiating : GET /etsy/oauth/authorize
+
+    Initiating --> Pending : redirect to Etsy
+    Initiating --> [*] : user cancels
+
+    Pending --> Active : callback success
+    Pending --> [*] : OAuth error / timeout
+
+    Active --> Active : token refreshed
+    Active --> Expired : refresh token fails
+    Active --> Revoked : user disconnects
+
+    Expired --> Active : re-authorize
+    Expired --> [*] : connection deleted
+
+    Revoked --> [*] : cleanup
+}
+
+note right of Active
+    Tokens auto-refresh
+    before expiration
+end note
+
+== Agent States ==
+
+state "Agent Lifecycle" as AgentState {
+    [*] --> Provisioning : POST /agents/provision
+
+    Provisioning --> Active : workspace ready
+    Provisioning --> Error : creation failed
+
+    Active --> Active : processing messages
+    Active --> Paused : POST /agents/me/pause
+    Active --> Error : runtime error
+
+    Paused --> Active : POST /agents/me/resume
+    Paused --> [*] : DELETE /agents/me
+
+    Error --> Active : issue resolved
+    Error --> [*] : deprovisioned
+}
+
+note right of Provisioning
+    1. Create workspace dir
+    2. Generate CLAUDE.md
+    3. Write .mcp.json
+    4. Inject skills
+    5. Register with OpenClaw
+end note
+
+== Message Queue States ==
+
+state "Inbox Message" as MessageState {
+    [*] --> Queued : message received
+
+    Queued --> Processing : worker claims job
+    Queued --> Queued : waiting for worker
+
+    Processing --> Done : success
+    Processing --> Failed : error (retries exhausted)
+    Processing --> Queued : retry (with backoff)
+
+    Done --> [*] : archived
+    Failed --> [*] : logged for review
+}
+
+note right of Processing
+    Atomic claim with:
+    FOR UPDATE SKIP LOCKED
+
+    Retry with exponential backoff:
+    attempt 1: 5s
+    attempt 2: 15s
+    attempt 3: 45s
+    max attempts: 3
+end note
+
+== Product Sync States ==
+
+state "Product State" as ProductState {
+    [*] --> Syncing : sync triggered
+
+    Syncing --> Active : listing active on Etsy
+    Syncing --> Draft : listing is draft
+    Syncing --> SoldOut : quantity = 0
+
+    Active --> SoldOut : inventory depleted
+    Active --> Draft : seller deactivates
+    Active --> [*] : listing deleted on Etsy
+
+    SoldOut --> Active : restocked
+    Draft --> Active : published
+
+    Draft --> [*] : deleted
+    SoldOut --> [*] : deleted
+}
+
+== WhatsApp Connection States ==
+
+state "WhatsApp Channel" as WhatsAppState {
+    [*] --> Pending : POST /messaging/whatsapp/connect
+
+    Pending --> QRDisplayed : QR code generated
+
+    QRDisplayed --> Connected : user scans QR
+    QRDisplayed --> Pending : QR expired (retry)
+    QRDisplayed --> [*] : user cancels
+
+    Connected --> Connected : messages flowing
+    Connected --> Disconnected : session invalidated
+
+    Disconnected --> Pending : reconnect attempt
+    Disconnected --> [*] : user removes channel
+}
+
+note right of QRDisplayed
+    QR valid for ~60 seconds
+    OpenClaw Baileys session
+end note
+
+@enduml

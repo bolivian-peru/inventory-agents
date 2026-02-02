@@ -1,0 +1,143 @@
+@startuml Etsy Seller User Journey
+!theme plain
+skinparam backgroundColor #FEFEFE
+
+title Etsy Seller Complete User Journey
+
+|Seller|
+start
+:Visit inventoryforagents.xyz;
+
+|Frontend|
+:Show Landing Page;
+:Display value proposition;
+
+|Seller|
+:Click "Activate Your Agent";
+
+|Frontend|
+:Show Registration Form;
+
+|Seller|
+:Enter email, password, name;
+:Submit registration;
+
+|Backend|
+:POST /auth/register;
+:Hash password (bcrypt 12 rounds);
+:Create seller record;
+:Generate JWT token;
+:Return token + seller info;
+
+|Frontend|
+:Store JWT in localStorage;
+:Redirect to Dashboard;
+:Show "Connect Etsy" prompt;
+
+|Seller|
+:Click "Connect Etsy Shop";
+
+|Backend|
+:GET /etsy/oauth/authorize;
+:Generate PKCE code_verifier + challenge;
+:Store state in Redis (5 min TTL);
+:Return Etsy authorization URL;
+
+|Frontend|
+:Redirect to Etsy OAuth page;
+
+|Etsy|
+:Seller logs into Etsy;
+:Authorizes IFA app;
+:Redirect to callback with code;
+
+|Backend|
+:GET /etsy/oauth/callback?code=xxx&state=xxx;
+:Retrieve state from Redis;
+:Exchange code for tokens;
+:Encrypt tokens (AES-256-GCM);
+:Fetch shop info from Etsy;
+:Store connection in database;
+:Trigger initial product sync;
+
+|Frontend|
+:Show "Shop Connected!" message;
+:Display synced product count;
+
+|Seller|
+:Review products in dashboard;
+:Click "Provision AI Agent";
+
+|Backend|
+:POST /agents/provision;
+:Create workspace directory;
+:Generate CLAUDE.md from template;
+:Generate SOUL.md;
+:Create .mcp.json with Etsy config;
+:Inject skills (inventory-analysis);
+:Register with OpenClaw Gateway;
+:Create agent record (status: active);
+
+|Frontend|
+:Show "Agent Active!" status;
+:Display agent activity panel;
+
+|Seller|
+:Click "Connect WhatsApp";
+
+|Backend|
+:POST /messaging/whatsapp/connect;
+:OpenClaw generates QR code;
+:Return QR code data;
+
+|Frontend|
+:Display WhatsApp QR code;
+
+|Seller|
+:Scan QR with WhatsApp app;
+
+|OpenClaw|
+:WhatsApp session established;
+:Register phone with seller's agent;
+
+|Frontend|
+:Show "WhatsApp Connected!";
+
+|Seller|
+:Share WhatsApp number with customers;
+
+== Customer Interaction Flow ==
+
+|Customer|
+:Send WhatsApp message:
+"Do you have blue ceramic mugs?";
+
+|OpenClaw|
+:Receive message via Baileys;
+:Route to seller's workspace;
+:Load CLAUDE.md context;
+:Query Etsy MCP for inventory;
+
+|Anthropic|
+:Process with Claude;
+:Generate response;
+
+|OpenClaw|
+:Send response via WhatsApp:
+"Yes! We have the Blue Ocean Ceramic Mug
+in stock - $24.99, ships in 2-3 days.
+Would you like the link?";
+
+|Customer|
+:Receives helpful response;
+:Visits Etsy listing;
+:Makes purchase;
+
+|Seller|
+:Views activity in dashboard;
+:Sees customer interaction log;
+:Celebrates automated sale! 🎉;
+
+stop
+
+@enduml

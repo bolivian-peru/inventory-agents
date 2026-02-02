@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment files (NEVER commit these)
+.env
+.env.local
+.env.*.local
+.env.production
+.credentials
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# Private documentation (server details, credentials)
+HETZNER.md
+docs/PRIVATE_*.md
+*.private.md
+
+# PM2
+.pm2/
+
+# OS files
+Thumbs.db
+.DS_Store
