@@ -40,3 +40,6 @@ internal/
 PRODUCTION_SPRINT.md
 LAUNCH_READY.md
 TWEET_THREADS.md
+
+# Patches
+*.patch

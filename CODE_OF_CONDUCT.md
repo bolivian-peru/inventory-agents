@@ -36,8 +36,7 @@ Everyone is welcome here — regardless of background, experience, or shop size.
 
 Bad behavior? Report it:
 
-- **Telegram:** [t.me/inventoryforagents](https://t.me/inventoryforagents)
-- **Twitter:** [@agentinventory](https://x.com/agentinventory)
+**Email:** conduct@inventoryforagents.xyz
 
 We'll review within 48 hours.
 

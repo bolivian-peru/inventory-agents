@@ -155,12 +155,6 @@ curl -fsSL https://raw.githubusercontent.com/bolivian-peru/inventory-agents/main
 
 $IFA is the community token for believers in autonomous commerce.
 
-| Utility | Description |
-|---------|-------------|
-| 💰 Bounties | Contributors get paid in $IFA |
-| 🎯 Early Access | Token holders shape development |
-| 🌐 Alignment | Community success = project success |
-
 **[Buy $IFA on Pump.fun →](https://pump.fun/coin/GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump)**
 
 *Experimental token. No promises. DYOR.*
