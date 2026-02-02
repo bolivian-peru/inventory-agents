@@ -3,7 +3,9 @@
 ## General Questions
 
 ### What is Inventory For Agents (IFA)?
-IFA is an AI-powered sales agent platform that enables e-commerce sellers to deploy autonomous AI assistants that know their product catalog and answer customer questions 24/7.
+IFA is an **early-stage, open-source** AI agent platform that enables e-commerce sellers to deploy autonomous AI assistants that know their product catalog and answer customer questions 24/7.
+
+**Current Status**: Backend infrastructure is production-ready. Etsy App Store integration pending API approval (1-3 weeks). Perfect for developers who want to build on agent infrastructure or contribute.
 
 ### Who is this for?
 - **Etsy Sellers**: Install from Etsy App Store for instant setup
@@ -20,7 +22,9 @@ IFA is an AI-powered sales agent platform that enables e-commerce sellers to dep
 **No.** The hosted service handles all API integrations. You just connect your shop.
 
 ### How long does setup take?
-About 2 minutes. Install from Etsy App Store, click "Allow", and your agent is live.
+**When launched:** About 2 minutes. Install from Etsy App Store, click "Allow", and your agent is live.
+
+**Currently:** The Etsy App Store listing is pending approval. For developers, self-hosting takes 15-30 minutes following our [deployment guide](backend/DEVELOPER_DEPLOYMENT.md).
 
 ### Where is my data stored?
 On secure cloud infrastructure. Your shop data is encrypted and only used to power your AI agent.

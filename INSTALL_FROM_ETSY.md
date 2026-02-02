@@ -1,12 +1,16 @@
 # Install Inventory For Agents from Etsy App Store
 
-## Quick Start (2 Minutes)
+> ⚠️ **Status**: Pending Etsy API approval (1-3 weeks). This guide is for future reference.
 
-1. **Go to Etsy App Store** (coming soon)
+## Quick Start (2 Minutes) - When Available
+
+1. **Go to Etsy App Store** (launching Q1 2026)
 2. **Search "Inventory for Agents"**
 3. **Click "Install App"**
 4. **Click "Allow"** to authorize access
-5. **Done!** Your AI agent is now live
+5. **Done!** Your AI agent will be live
+
+**Note:** We're currently awaiting Etsy developer API approval. Check back soon or [join our waitlist](https://www.inventoryforagents.xyz/merchants).
 
 ---
 
