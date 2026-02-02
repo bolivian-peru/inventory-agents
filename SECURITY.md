@@ -8,7 +8,7 @@
 
 Found a security issue? **Don't open a public issue.**
 
-**Email:** security@inventoryforagents.xyz
+**Report via Telegram:** [t.me/inventoryforagents](https://t.me/inventoryforagents)
 
 Include:
 - Description of the issue
@@ -125,10 +125,10 @@ We'll work with you and publicly credit contributions.
 
 **Security is a feature, not an afterthought.**
 
-Questions? [security@inventoryforagents.xyz](mailto:security@inventoryforagents.xyz)
+Questions? Join our [Telegram community](https://t.me/inventoryforagents) or ping [@agentinventory](https://x.com/agentinventory) on Twitter.
 
 ---
 
-[🌐 Website](https://inventoryforagents.xyz) · [💬 Telegram](https://t.me/inventoryforagents)
+[🌐 Website](https://inventoryforagents.xyz) · [💬 Telegram](https://t.me/inventoryforagents) · [🐦 Twitter](https://x.com/agentinventory)
 
 </div>
