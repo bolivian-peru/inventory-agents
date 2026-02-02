@@ -1,17 +1,23 @@
 # 🤖 ClawdBot - Deploy AI Telegram Bots in 15 Minutes
 
-> **Production-ready Telegram bot infrastructure powered by OpenClaw + Claude**
+> **Production-ready Telegram bot infrastructure powered by OpenClaw + Claude Opus**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Deploy Time: 15min](https://img.shields.io/badge/Deploy-15min-brightgreen)]()
 [![Powered by OpenClaw](https://img.shields.io/badge/Powered%20by-OpenClaw-purple)](https://openclaw.ai)
-[![Claude Opus](https://img.shields.io/badge/AI-Claude%20Opus-8B5CF6)](https://anthropic.com)
+[![Claude Opus](https://img.shields.io/badge/AI-Claude%20Opus%204.5-8B5CF6)](https://anthropic.com)
 
 ---
 
 ## 🎯 What is ClawdBot?
 
-**ClawdBot** is an open-source framework for deploying AI-powered Telegram bots that can converse naturally, remember context, and execute tasks—all powered by Claude Opus and OpenClaw.
+**ClawdBot** is an open-source framework for deploying AI-powered Telegram bots that can:
+
+- 🤖 Converse naturally using Claude Opus 4.5
+- 💬 Remember context across conversations
+- 🚀 Deploy in 15 minutes to your own VPS
+- 💰 Cost $25-65/month (server + API usage)
+- 🔒 Self-hosted - you own the data
 
 ### ⚡ Deploy in 15 Minutes
 
@@ -19,14 +25,14 @@
 # 1. Install OpenClaw
 npm install -g openclaw
 
-# 2. Configure
-openclaw configure
+# 2. Enable Telegram plugin
+openclaw plugins enable telegram
 
-# 3. Start
-openclaw gateway start
+# 3. Configure & start
+openclaw channels add --channel telegram --token YOUR_BOT_TOKEN
 ```
 
-**That's it!** Your AI bot is live.
+**That's it!** Your AI bot is live. [Full deployment guide →](docs/DEPLOYMENT.md)
 
 ---
 
@@ -37,9 +43,9 @@ openclaw gateway start
 ✅ **24/7 customer support** - Never miss a question
 ✅ **Product inquiries** - Instant answers about inventory
 ✅ **Order updates** - Real-time status checks
-✅ **Zero coding required** - Deploy via simple commands
+✅ **Etsy integration** - Coming soon (pending API approval)
 
-**Example**: [Inventory For Agents](https://inventoryforagents.xyz) uses ClawdBot to help Etsy sellers manage their shops via Telegram.
+**Example**: [Inventory For Agents](https://inventoryforagents.xyz) uses ClawdBot to help Etsy sellers manage their shops.
 
 ### For Developers
 
@@ -67,7 +73,7 @@ openclaw gateway start
        │ Process
        ▼
 ┌─────────────────────┐
-│  Claude Opus        │  ← AI processing
+│  Claude Opus 4.5    │  ← AI processing
 │  (Anthropic API)    │
 └──────┬──────────────┘
        │ Response
@@ -122,32 +128,39 @@ apt install -y nodejs
 npm install -g openclaw
 
 # Configure
-mkdir -p ~/.openclaw
-cat > ~/.openclaw/openclaw.json << 'EOF'
-{
-  "agents": {
-    "defaults": {
-      "model": {
-        "primary": "anthropic/claude-opus-4-5"
-      }
-    }
-  },
-  "gateway": {
-    "mode": "local"
-  }
-}
-EOF
+openclaw config set gateway.mode local
+openclaw config set agents.defaults.model.primary anthropic/claude-opus-4-5
 
-# Set API keys
-export ANTHROPIC_API_KEY="your-anthropic-key"
-export OPENCLAW_TELEGRAM_TOKEN="your-telegram-token"
+# Enable Telegram plugin
+openclaw plugins enable telegram
 
 # Start gateway
 openclaw gateway install
-openclaw gateway start
+systemctl --user start openclaw-gateway.service
+
+# Add your bot
+openclaw channels add \
+  --channel telegram \
+  --account default \
+  --name "My Bot" \
+  --token "YOUR_BOT_TOKEN"
 ```
 
-### 3. Test Your Bot
+### 3. Set API Keys
+
+Edit the systemd service file to add environment variables:
+
+```bash
+# Add to ~/.config/systemd/user/openclaw-gateway.service
+Environment="ANTHROPIC_API_KEY=your-key-here"
+Environment="OPENCLAW_TELEGRAM_TOKEN=your-bot-token"
+
+# Reload and restart
+systemctl --user daemon-reload
+systemctl --user restart openclaw-gateway.service
+```
+
+### 4. Test Your Bot
 
 Open your bot in Telegram and send:
 
@@ -158,17 +171,17 @@ Hello! How can you help me?
 
 Your bot should respond with AI-generated answers! 🎉
 
+**[Full deployment guide with troubleshooting →](docs/DEPLOYMENT.md)**
+
 ---
 
-## 📖 Full Documentation
+## 📖 Documentation
 
 | Guide | Description |
 |-------|-------------|
-| [Quick Start](docs/QUICKSTART.md) | 15-minute setup |
-| [Deployment](docs/DEPLOYMENT.md) | Production deployment |
-| [Configuration](docs/CONFIGURATION.md) | Advanced config |
-| [Customization](docs/CUSTOMIZATION.md) | Add custom skills |
-| [Troubleshooting](docs/TROUBLESHOOTING.md) | Common issues |
+| [Deployment Guide](docs/DEPLOYMENT.md) | Complete setup instructions |
+| [FAQ](FAQ.md) | Frequently asked questions |
+| [Security](SECURITY.md) | Security best practices |
 
 ---
 
@@ -176,63 +189,35 @@ Your bot should respond with AI-generated answers! 🎉
 
 ### 💬 Customer Support Bot
 
-```markdown
----
-name: support-assistant
----
-# Support Assistant
-
-When users ask for help:
-1. Check FAQ database
-2. Provide clear answers
-3. Escalate complex issues
-```
+Help customers 24/7 with instant AI-powered responses.
 
 ### 📦 Inventory Management Bot
 
-```markdown
----
-name: inventory-assistant
----
-# Inventory Assistant
+Query product inventory, check stock levels, manage your catalog.
 
-When users ask about products:
-1. Query inventory database
-2. Show real-time stock levels
-3. Suggest alternatives
-```
+**Coming Soon**: Full Etsy shop integration (pending Etsy API approval).
 
 ### 🤖 Personal Assistant Bot
 
-```markdown
----
-name: personal-assistant
----
-# Personal Assistant
-
-Help users with:
-- Task management
-- Reminders
-- Calendar scheduling
-- Information lookup
-```
+Task management, reminders, information lookup, and more.
 
 ---
 
 ## 🌟 Real-World Example
 
-**[Inventory For Agents](https://inventoryforagents.xyz)** uses ClawdBot to power [@agentsinventory_bot](https://t.me/agentsinventory_bot), helping Etsy sellers manage their shops via Telegram.
+**[Inventory For Agents](https://inventoryforagents.xyz)** uses ClawdBot to power [@agentsinventory_bot](https://t.me/agentsinventory_bot).
 
-**Features:**
-- 📦 Product inventory queries
+**Current Features:**
+- 📦 Natural conversation about inventory
 - 💬 Customer inquiry responses
-- 🔗 Etsy shop integration
-- 🤖 Fully autonomous operation
+- 🤖 Fully autonomous AI operation
+- 🔗 **Etsy integration coming** (awaiting API approval)
 
-**Tech Stack:**
-- **Frontend**: ClawdBot (this repo)
-- **AI**: Claude Opus 4.5
-- **Backend** (optional): Etsy OAuth + shop data
+**Future Features** (once Etsy API approved):
+- Real-time inventory sync with Etsy shops
+- Product queries from your catalog
+- Order management and tracking
+- Shop analytics
 
 **Try it**: [@agentsinventory_bot](https://t.me/agentsinventory_bot)
 
@@ -261,6 +246,24 @@ Help users with:
 
 ---
 
+## 🔌 Etsy Integration (Coming Soon)
+
+We're building a full Etsy shop integration layer for ClawdBot that will enable:
+
+- **OAuth Connection Flow**: Securely connect Etsy shops to your bot
+- **Real-time Inventory Sync**: Keep product data up-to-date
+- **Product Queries**: Ask your bot about any product in your shop
+- **Order Management**: Track and manage orders via Telegram
+- **Shop Analytics**: Get insights about your store
+
+**Status**: 🕐 Awaiting Etsy API approval
+
+Once approved, we'll release the Etsy integration as a separate package that connects to ClawdBot. The integration will be optional and only for Etsy sellers who want shop management features.
+
+**Want Etsy integration?** Star this repo to stay updated!
+
+---
+
 ## 🤝 Contributing
 
 We welcome contributions!
@@ -270,7 +273,7 @@ We welcome contributions!
 3. Make your changes
 4. Submit a pull request
 
-See [CONTRIBUTING.md](backend/CONTRIBUTING.md) for details.
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community guidelines.
 
 ---
 
@@ -294,19 +297,20 @@ See [LICENSE](LICENSE) for full details.
 ## 🎯 Roadmap
 
 - [x] **Telegram support** (production-ready)
-- [ ] **WhatsApp integration** (coming soon)
+- [x] **Claude Opus 4.5 integration**
+- [ ] **Etsy OAuth integration** (awaiting API approval)
+- [ ] **WhatsApp integration** (planned)
 - [ ] **Discord support** (planned)
 - [ ] **Multi-language support** (planned)
 - [ ] **Voice messages** (planned)
-- [ ] **Image generation** (planned)
 
 ---
 
 ## 🆘 Support
 
-- **Documentation**: [Full docs](docs/)
-- **FAQ**: [Frequently Asked Questions](FAQ.md)
-- **Issues**: [GitHub Issues](../../issues)
+- **Documentation**: [docs/](docs/)
+- **FAQ**: [FAQ.md](FAQ.md)
+- **Issues**: [GitHub Issues](https://github.com/bolivian-peru/inventory-agents/issues)
 - **Community**: [Telegram Group](https://t.me/inventoryforagents)
 
 ---
@@ -314,7 +318,7 @@ See [LICENSE](LICENSE) for full details.
 ## 🏆 Built With
 
 - **[OpenClaw](https://openclaw.ai)** - Agent runtime and channel management
-- **[Claude API](https://anthropic.com)** - AI language model
+- **[Claude API](https://anthropic.com)** - AI language model (Opus 4.5)
 - **[Telegram Bot API](https://core.telegram.org/bots)** - Messaging platform
 - **[Hetzner Cloud](https://hetzner.com)** - Recommended hosting
 
@@ -334,12 +338,14 @@ See [LICENSE](LICENSE) for full details.
 
 **Deploy your AI Telegram bot in 15 minutes** ⚡
 
-[Get Started](docs/QUICKSTART.md) • [View Demo](https://t.me/agentsinventory_bot) • [Documentation](docs/)
+[Get Started](docs/DEPLOYMENT.md) • [View Demo](https://t.me/agentsinventory_bot) • [Documentation](docs/)
 
 ---
 
 ### ⭐ Star this repo if you're building with AI agents! ⭐
 
 **Powered by [Inventory For Agents](https://inventoryforagents.xyz)**
+
+*Etsy integration coming soon - pending API approval from Etsy*
 
 </div>
