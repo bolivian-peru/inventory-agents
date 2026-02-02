@@ -11,13 +11,16 @@
 
 ## 🎯 What is ClawdBot?
 
-**ClawdBot** is an open-source framework for deploying AI-powered Telegram bots that can:
+**ClawdBot** is the open-source AI bot engine that powers [Inventory For Agents](https://inventoryforagents.xyz) - an Etsy shop management platform.
+
+This is the **core bot infrastructure** that you can use to build your own AI-powered Telegram bots:
 
 - 🤖 Converse naturally using Claude Opus 4.5
 - 💬 Remember context across conversations
-- 🚀 Deploy in 15 minutes to your own VPS
-- 💰 Cost $25-65/month (server + API usage)
+- 🚀 Deploy in 15 minutes to your own VPS (Hetzner)
+- 💰 Cost $15-65/month (server + API usage)
 - 🔒 Self-hosted - you own the data
+- 🔌 **Etsy integration** - Connect to IFA's Etsy app (coming soon, pending API approval)
 
 ### ⚡ Deploy in 15 Minutes
 
@@ -246,21 +249,64 @@ Task management, reminders, information lookup, and more.
 
 ---
 
-## 🔌 Etsy Integration (Coming Soon)
+## 🔌 How ClawdBot Connects to the IFA Etsy App
 
-We're building a full Etsy shop integration layer for ClawdBot that will enable:
+**ClawdBot** is the open-source bot engine. **Inventory For Agents (IFA)** is the full Etsy shop management platform that uses ClawdBot.
 
-- **OAuth Connection Flow**: Securely connect Etsy shops to your bot
-- **Real-time Inventory Sync**: Keep product data up-to-date
-- **Product Queries**: Ask your bot about any product in your shop
-- **Order Management**: Track and manage orders via Telegram
-- **Shop Analytics**: Get insights about your store
+### Architecture
 
-**Status**: 🕐 Awaiting Etsy API approval
+```
+┌─────────────────────────────────────────┐
+│  ClawdBot (Open Source)                 │
+│  - Telegram bot infrastructure          │
+│  - AI conversations (Claude Opus)       │
+│  - Message handling                     │
+└─────────────┬───────────────────────────┘
+              │
+              │ Connects to
+              ▼
+┌─────────────────────────────────────────┐
+│  IFA Etsy App (Coming Soon)             │
+│  - Etsy OAuth integration               │
+│  - Product inventory sync               │
+│  - Order management                     │
+│  - Shop analytics                       │
+└─────────────────────────────────────────┘
+              │
+              │ API Calls
+              ▼
+┌─────────────────────────────────────────┐
+│  Etsy API                               │
+│  (Pending approval)                     │
+└─────────────────────────────────────────┘
+```
 
-Once approved, we'll release the Etsy integration as a separate package that connects to ClawdBot. The integration will be optional and only for Etsy sellers who want shop management features.
+### What You Get Today
 
-**Want Etsy integration?** Star this repo to stay updated!
+✅ **ClawdBot** - Full AI Telegram bot you can deploy now
+✅ **Natural conversations** - Claude Opus 4.5 powered
+✅ **Production-ready** - Battle-tested infrastructure
+✅ **Self-hosted** - Deploy to your Hetzner VPS
+
+### What's Coming (Pending Etsy API Approval)
+
+🕐 **IFA Etsy App** - Separate service that connects to ClawdBot
+🕐 **Etsy OAuth** - Secure shop connection
+🕐 **Inventory Sync** - Real-time product data
+🕐 **Order Management** - Track and manage orders via Telegram
+🕐 **Shop Analytics** - Insights about your store
+
+### How It Works Together
+
+1. **Deploy ClawdBot** (this repo) to your Hetzner server
+2. **Connect to IFA Etsy App** (when available) via OAuth
+3. **Bot gains access** to your Etsy shop data
+4. **Customers can ask** about products via Telegram
+5. **You manage shop** entirely through your bot
+
+**Status**: 🕐 Etsy API approval pending. Once approved, IFA Etsy App will be released as a companion service.
+
+**Want Etsy integration?** Star this repo and join our [Telegram community](https://t.me/inventoryforagents)!
 
 ---
 
