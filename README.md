@@ -258,7 +258,6 @@ We take security seriously:
 
 ## 📞 Support
 
-- **Email**: support@inventoryforagents.xyz
 - **Documentation**: [Full docs](backend/docs/)
 - **FAQ**: [Common questions](FAQ.md)
 - **GitHub Issues**: [Report bugs](../../issues)

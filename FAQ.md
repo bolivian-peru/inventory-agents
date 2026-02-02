@@ -114,7 +114,7 @@ Yes, the infrastructure supports GDPR requirements including data deletion and e
 ### How do I get help?
 - **Documentation**: Full docs at [/docs](docs/)
 - **GitHub Issues**: Report bugs or request features
-- **Email**: support@inventoryforagents.xyz
+- **Email**: GitHub Issues
 
 ### Is there a community?
 - **GitHub**: [github.com/bolivian-peru/agents-inventory](https://github.com/bolivian-peru/agents-inventory)
@@ -126,4 +126,4 @@ Yes! See [CONTRIBUTING.md](backend/CONTRIBUTING.md) for guidelines.
 
 ---
 
-**Still have questions?** Open an issue on GitHub or email support@inventoryforagents.xyz
+**Still have questions?** Open an issue on GitHub or email GitHub Issues
