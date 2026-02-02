@@ -10,7 +10,7 @@ The fastest path from zero to "my bot just answered a customer."
 
 | Item | Get It |
 |------|--------|
-| Hetzner account | [Hetzner Cloud](https://hetzner.cloud/?ref=nXcA4WhTDugS) |
+| Hetzner account | [hetzner.cloud/?ref=nXcA4WhTDugS](https://hetzner.cloud/?ref=nXcA4WhTDugS) |
 | Telegram bot | [@BotFather](https://t.me/BotFather) |
 | Anthropic key | [console.anthropic.com](https://console.anthropic.com) |
 
