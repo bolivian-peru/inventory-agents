@@ -1,35 +1,68 @@
-# Code of Conduct
+# 🤝 Code of Conduct
+
+> **Build together. Respect each other.**
+
+---
 
 ## Our Pledge
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+IFA is for creators helping creators. We're building AI tools that give small sellers superpowers.
 
-We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+Everyone is welcome here — regardless of background, experience, or shop size.
 
-## Our Standards
+---
 
-Examples of behavior that contributes to a positive environment:
+## Standards
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+### ✅ Do
 
-Examples of unacceptable behavior:
+- Be welcoming and inclusive
+- Respect different perspectives
+- Accept constructive feedback gracefully
+- Focus on what helps the community
+- Help newcomers get started
 
-* The use of inappropriate language or imagery
-* Trolling, insulting or derogatory comments, and personal attacks
-* Public or private harassment
-* Publishing others' private information without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a professional setting
+### ❌ Don't
+
+- Harass or attack others
+- Share private information
+- Spam or self-promote excessively
+- Discriminate against anyone
+- Be a jerk
+
+---
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at conduct@inventoryforagents.xyz.
+Bad behavior? Report it:
 
-All complaints will be reviewed and investigated promptly and fairly.
+- **Telegram:** [t.me/inventoryforagents](https://t.me/inventoryforagents)
+- **Twitter:** [@agentinventory](https://x.com/agentinventory)
+
+We'll review within 48 hours.
+
+---
+
+## Scope
+
+This applies everywhere IFA exists:
+- GitHub (issues, PRs, discussions)
+- Telegram community
+- Twitter mentions
+- Any IFA-related space
+
+---
 
 ## Attribution
 
-This Code of Conduct is adapted from the Contributor Covenant, version 2.1, available at https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
+Adapted from [Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html)
+
+---
+
+<div align="center">
+
+**We're all here to build something useful.**
+
+[💬 Telegram](https://t.me/inventoryforagents) · [🌐 Website](https://inventoryforagents.xyz)
+
+</div>

@@ -1,397 +1,264 @@
-# 🤖 ClawdBot - Deploy AI Telegram Bots in 15 Minutes
+# 🛒 IFA — Your First AI Employee
 
-> **Production-ready Telegram bot infrastructure powered by OpenClaw + Claude Opus**
+> **Every small creator deserves an AI assistant that handles customers while they create.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Deploy Time: 15min](https://img.shields.io/badge/Deploy-15min-brightgreen)]()
-[![Powered by OpenClaw](https://img.shields.io/badge/Powered%20by-OpenClaw-purple)](https://openclaw.ai)
-[![Claude Opus](https://img.shields.io/badge/AI-Claude%20Opus%204.5-8B5CF6)](https://anthropic.com)
+[![$IFA LIVE](https://img.shields.io/badge/%24IFA-LIVE%20ON%20PUMP.FUN-00D9FF?style=for-the-badge)](https://pump.fun/coin/GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump)
+[![Status](https://img.shields.io/badge/Status-BETA-yellow?style=for-the-badge)]()
+[![OpenClaw](https://img.shields.io/badge/Powered%20by-OpenClaw-8B5CF6?style=for-the-badge)](https://github.com/openclaw/openclaw)
+
+<p align="center">
+<b>
+<a href="https://inventoryforagents.xyz">Website</a> · 
+<a href="https://t.me/inventoryforagents">Telegram</a> · 
+<a href="https://x.com/agentinventory">Twitter</a> · 
+<a href="https://pump.fun/coin/GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump">$IFA Token</a>
+</b>
+</p>
 
 ---
 
-## 🎯 What is ClawdBot?
+## ⚠️ Beta Notice
 
-**ClawdBot** is the open-source AI bot engine that powers [Inventory For Agents](https://inventoryforagents.xyz) - an Etsy shop management platform.
+**IFA is in active development.** We're building in public and shipping daily.
 
-This is the **core bot infrastructure** that you can use to build your own AI-powered Telegram bots:
+- ✅ Core agent infrastructure is working
+- 🚧 Etsy integration pending API approval
+- 🚧 Additional features rolling out over the next 2 weeks
 
-- 🤖 Converse naturally using Claude Opus 4.5
-- 💬 Remember context across conversations
-- 🚀 Deploy in 15 minutes to your own VPS (Hetzner)
-- 💰 Cost $15-65/month (server + API usage)
-- 🔒 Self-hosted - you own the data
-- 🔌 **Etsy integration** - Connect to IFA's Etsy app (coming soon, pending API approval)
+Join our [Telegram](https://t.me/inventoryforagents) for updates and early access.
 
-### ⚡ Deploy in 15 Minutes
+---
+
+## 🎯 What is IFA?
+
+You're a craftsman. You make beautiful things — handmade jewelry, custom art, vintage finds.
+
+But selling is a full-time job:
+- Answering the same questions over and over
+- Missing messages while you sleep
+- Choosing between creating and selling
+
+**IFA gives you an AI assistant that handles customers while you focus on creating.**
+
+---
+
+## How It Works
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              YOUR DEDICATED AGENT CONTAINER                 │
+│                                                             │
+│   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    │
+│   │  Your       │    │    AI       │    │  Telegram/  │    │
+│   │  Products   │───▶│  Assistant  │───▶│  WhatsApp   │    │
+│   │  (synced)   │    │             │    │             │    │
+│   └─────────────┘    └─────────────┘    └─────────────┘    │
+│                                                             │
+│   Each seller gets their own isolated environment.          │
+│   Your data never mixes with anyone else's.                 │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Your Agent Can:
+
+| Capability | Description |
+|------------|-------------|
+| 📦 **Know your products** | Full catalog with prices, descriptions, stock |
+| 💬 **Answer questions** | Shipping, sizing, materials, availability |
+| 🎯 **Recommend products** | Help customers find what they're looking for |
+| 🌙 **Work 24/7** | Answer that 3am message while you sleep |
+| 🤝 **Escalate smart** | Complex issues go to you, not a dead end |
+
+### Your Agent Won't:
+
+- ❌ Make up products or prices
+- ❌ Be pushy or salesy
+- ❌ Pretend to be human
+- ❌ Handle things it shouldn't
+
+---
+
+## 🏗️ What's In This Repo
+
+```
+inventory-agents/
+├── templates/
+│   ├── SOUL.md           # Agent personality & values
+│   ├── CLAUDE.md         # Agent instructions
+│   └── products.md       # Product catalog template
+├── skills/
+│   ├── product-lookup/   # Find & recommend products
+│   └── customer-service/ # Handle common questions
+├── scripts/
+│   └── deploy.sh         # Self-hosted deployment
+└── docs/
+    ├── DEPLOYMENT.md     # Setup guide
+    └── ETSY_PLUGIN.md    # Plugin vision (TBA)
+```
+
+This repo contains the **open-source agent infrastructure** — the templates, skills, and configuration that power every IFA agent.
+
+---
+
+## 🚀 Current Status
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| Agent Templates | ✅ Ready | SOUL.md, CLAUDE.md |
+| Product Lookup Skill | ✅ Ready | Search & recommend |
+| Customer Service Skill | ✅ Ready | FAQs, shipping, returns |
+| Self-Hosted Deploy | ✅ Ready | For developers |
+| Etsy Integration | 🕐 Pending | Awaiting API approval |
+| WhatsApp Support | 🕐 TBA | Coming soon |
+| Shopify Integration | 🕐 TBA | On roadmap |
+| One-Click Deploy | 🕐 TBA | Building over next 2 weeks |
+
+---
+
+## 📱 Etsy Plugin (Coming Soon)
+
+We're building an Etsy app that makes this dead simple:
+
+1. Install from Etsy App Store
+2. Authorize your shop
+3. Connect Telegram
+4. Done — your AI assistant is live
+
+**Status:** Awaiting Etsy API developer approval. Star this repo to get notified when it launches.
+
+---
+
+## 🛠️ Self-Hosted (For Developers)
+
+If you're technical and want to run your own agent now:
 
 ```bash
-# 1. Install OpenClaw
-npm install -g openclaw
-
-# 2. Enable Telegram plugin
-openclaw plugins enable telegram
-
-# 3. Configure & start
-openclaw channels add --channel telegram --token YOUR_BOT_TOKEN
+# Requires: VPS, Anthropic API key, Telegram bot token
+curl -fsSL https://raw.githubusercontent.com/bolivian-peru/inventory-agents/main/scripts/deploy.sh | bash
 ```
 
-**That's it!** Your AI bot is live. [Full deployment guide →](docs/DEPLOYMENT.md)
+**[📘 Full Deployment Guide →](docs/DEPLOYMENT.md)**
+
+### Requirements
+
+| Item | Where to Get |
+|------|--------------|
+| VPS Server | [Hetzner](https://hetzner.cloud/?ref=nXcA4WhTDugS) (~$15/mo) |
+| Anthropic API Key | [console.anthropic.com](https://console.anthropic.com) |
+| Telegram Bot Token | [@BotFather](https://t.me/BotFather) |
 
 ---
 
-## 🌟 Why ClawdBot?
+## 💎 $IFA Token
 
-### For E-Commerce Sellers
+**CA:** `GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump`
 
-✅ **24/7 customer support** - Never miss a question
-✅ **Product inquiries** - Instant answers about inventory
-✅ **Order updates** - Real-time status checks
-✅ **Etsy integration** - Coming soon (pending API approval)
+$IFA is the community token for believers in autonomous commerce.
 
-**Example**: [Inventory For Agents](https://inventoryforagents.xyz) uses ClawdBot to help Etsy sellers manage their shops.
+| Utility | Description |
+|---------|-------------|
+| 💰 Bounties | Contributors get paid in $IFA |
+| 🎯 Early Access | Token holders shape development |
+| 🌐 Alignment | Community success = project success |
 
-### For Developers
+**[Buy $IFA on Pump.fun →](https://pump.fun/coin/GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump)**
 
-✅ **Open source** - MIT licensed, fork and customize
-✅ **Production-ready** - Battle-tested on real deployments
-✅ **Simple architecture** - No complex backend needed
-✅ **Full control** - Runs on your VPS
-✅ **Extensible** - Add custom skills and integrations
+*Experimental token. No promises. DYOR.*
 
 ---
 
-## 🏗️ Architecture
+## 🗓️ Roadmap
 
-```
-┌──────────────┐
-│   User       │
-│  (Telegram)  │
-└──────┬───────┘
-       │ Message
-       ▼
-┌─────────────────────┐
-│    OpenClaw         │  ← Built-in Telegram support
-│  (Your VPS)         │
-└──────┬──────────────┘
-       │ Process
-       ▼
-┌─────────────────────┐
-│  Claude Opus 4.5    │  ← AI processing
-│  (Anthropic API)    │
-└──────┬──────────────┘
-       │ Response
-       ▼
-┌──────────────┐
-│   User       │
-│  (Telegram)  │
-└──────────────┘
-```
+### Next 2 Weeks
+- 🔧 Improved deployment flow
+- 🔧 Better product sync
+- 🔧 Enhanced skills
 
-**Key Components:**
-- **OpenClaw**: Message handling, channel management, agent runtime
-- **Claude Opus**: AI processing and natural language understanding
-- **Telegram Bot API**: Messaging delivery
-- **Your VPS**: Hosting (Hetzner, AWS, DigitalOcean, etc.)
+### Q1 2026
+- 📋 Etsy plugin (pending API approval)
+- 📋 WhatsApp integration
+- 📋 Dashboard for sellers
 
-**No custom backend required!** OpenClaw handles everything.
+### Q2 2026
+- 📋 Shopify integration
+- 📋 Proactive outreach features
+- 📋 Advanced analytics
 
 ---
 
-## 🚀 Quick Start
+## 🤝 Community
 
-### Prerequisites
+| Platform | Link |
+|----------|------|
+| 💬 Telegram | [t.me/inventoryforagents](https://t.me/inventoryforagents) |
+| 🐦 Twitter | [@agentinventory](https://x.com/agentinventory) |
+| 🌍 Website | [inventoryforagents.xyz](https://inventoryforagents.xyz) |
 
-- VPS server (Hetzner recommended, ~$15/month)
-- Telegram bot token (from [@BotFather](https://t.me/BotFather))
-- Anthropic API key ([get one here](https://console.anthropic.com))
+---
 
-### 1. Create Your Telegram Bot
+## 🛠️ Contributing
 
-Open Telegram → Search for **@BotFather**
-
-```
-/newbot
-Name: Your Bot Name
-Username: yourbot_bot
-```
-
-Save the token: `1234567890:ABCdef...`
-
-### 2. Deploy to Your Server
+We welcome contributions and pay bounties in $IFA.
 
 ```bash
-# SSH to your VPS
-ssh root@your-server-ip
-
-# Install Node.js 18+
-curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-apt install -y nodejs
-
-# Install OpenClaw
-npm install -g openclaw
-
-# Configure
-openclaw config set gateway.mode local
-openclaw config set agents.defaults.model.primary anthropic/claude-opus-4-5
-
-# Enable Telegram plugin
-openclaw plugins enable telegram
-
-# Start gateway
-openclaw gateway install
-systemctl --user start openclaw-gateway.service
-
-# Add your bot
-openclaw channels add \
-  --channel telegram \
-  --account default \
-  --name "My Bot" \
-  --token "YOUR_BOT_TOKEN"
+git clone https://github.com/bolivian-peru/inventory-agents
+# Improve templates, skills, or docs
+# Submit a PR
 ```
 
-### 3. Set API Keys
+---
 
-Edit the systemd service file to add environment variables:
+## ❓ FAQ
 
-```bash
-# Add to ~/.config/systemd/user/openclaw-gateway.service
-Environment="ANTHROPIC_API_KEY=your-key-here"
-Environment="OPENCLAW_TELEGRAM_TOKEN=your-bot-token"
+<details>
+<summary><b>Is this ready to use?</b></summary>
 
-# Reload and restart
-systemctl --user daemon-reload
-systemctl --user restart openclaw-gateway.service
-```
+The core infrastructure works. Self-hosted deployment is available for developers. The Etsy plugin (one-click setup) is coming once we receive API approval.
+</details>
 
-### 4. Test Your Bot
+<details>
+<summary><b>How much does it cost?</b></summary>
 
-Open your bot in Telegram and send:
+Self-hosted: ~$25-65/month (server + AI API costs)
+Hosted option: Pricing TBA when plugin launches
+</details>
 
-```
-/start
-Hello! How can you help me?
-```
+<details>
+<summary><b>Is my data safe?</b></summary>
 
-Your bot should respond with AI-generated answers! 🎉
+Each seller gets their own dedicated container. Your products, conversations, and data are isolated and never shared.
+</details>
 
-**[Full deployment guide with troubleshooting →](docs/DEPLOYMENT.md)**
+<details>
+<summary><b>When will the Etsy plugin be ready?</b></summary>
+
+We're awaiting Etsy API developer approval. Join our Telegram for updates.
+</details>
 
 ---
 
-## 📖 Documentation
+## ⚡ Built With
 
-| Guide | Description |
-|-------|-------------|
-| [Deployment Guide](docs/DEPLOYMENT.md) | Complete setup instructions |
-| [FAQ](FAQ.md) | Frequently asked questions |
-| [Security](SECURITY.md) | Security best practices |
-
----
-
-## 🎨 Use Cases
-
-### 💬 Customer Support Bot
-
-Help customers 24/7 with instant AI-powered responses.
-
-### 📦 Inventory Management Bot
-
-Query product inventory, check stock levels, manage your catalog.
-
-**Coming Soon**: Full Etsy shop integration (pending Etsy API approval).
-
-### 🤖 Personal Assistant Bot
-
-Task management, reminders, information lookup, and more.
-
----
-
-## 🌟 Real-World Example
-
-**[Inventory For Agents](https://inventoryforagents.xyz)** uses ClawdBot to power [@agentsinventory_bot](https://t.me/agentsinventory_bot).
-
-**Current Features:**
-- 📦 Natural conversation about inventory
-- 💬 Customer inquiry responses
-- 🤖 Fully autonomous AI operation
-- 🔗 **Etsy integration coming** (awaiting API approval)
-
-**Future Features** (once Etsy API approved):
-- Real-time inventory sync with Etsy shops
-- Product queries from your catalog
-- Order management and tracking
-- Shop analytics
-
-**Try it**: [@agentsinventory_bot](https://t.me/agentsinventory_bot)
-
----
-
-## 💰 Cost Breakdown
-
-| Component | Cost/Month | Notes |
-|-----------|-----------|-------|
-| **VPS** | $15 | Hetzner CCX13 (8GB RAM) |
-| **Anthropic API** | $10-50 | Pay per usage |
-| **Domain** (optional) | $1 | For webhooks |
-| **Total** | **$26-66/month** | Scales with usage |
-
-**No hidden fees. No per-user charges. Full control.**
-
----
-
-## 🔒 Security & Privacy
-
-✅ **Self-hosted** - You own the data
-✅ **No data sharing** - Everything stays on your server
-✅ **Encrypted API calls** - TLS for all communication
-✅ **Rate limiting** - Built-in protection
-✅ **Token security** - Environment-based secrets
-
----
-
-## 🔌 How ClawdBot Connects to the IFA Etsy App
-
-**ClawdBot** is the open-source bot engine. **Inventory For Agents (IFA)** is the full Etsy shop management platform that uses ClawdBot.
-
-### Architecture
-
-```
-┌─────────────────────────────────────────┐
-│  ClawdBot (Open Source)                 │
-│  - Telegram bot infrastructure          │
-│  - AI conversations (Claude Opus)       │
-│  - Message handling                     │
-└─────────────┬───────────────────────────┘
-              │
-              │ Connects to
-              ▼
-┌─────────────────────────────────────────┐
-│  IFA Etsy App (Coming Soon)             │
-│  - Etsy OAuth integration               │
-│  - Product inventory sync               │
-│  - Order management                     │
-│  - Shop analytics                       │
-└─────────────────────────────────────────┘
-              │
-              │ API Calls
-              ▼
-┌─────────────────────────────────────────┐
-│  Etsy API                               │
-│  (Pending approval)                     │
-└─────────────────────────────────────────┘
-```
-
-### What You Get Today
-
-✅ **ClawdBot** - Full AI Telegram bot you can deploy now
-✅ **Natural conversations** - Claude Opus 4.5 powered
-✅ **Production-ready** - Battle-tested infrastructure
-✅ **Self-hosted** - Deploy to your Hetzner VPS
-
-### What's Coming (Pending Etsy API Approval)
-
-🕐 **IFA Etsy App** - Separate service that connects to ClawdBot
-🕐 **Etsy OAuth** - Secure shop connection
-🕐 **Inventory Sync** - Real-time product data
-🕐 **Order Management** - Track and manage orders via Telegram
-🕐 **Shop Analytics** - Insights about your store
-
-### How It Works Together
-
-1. **Deploy ClawdBot** (this repo) to your Hetzner server
-2. **Connect to IFA Etsy App** (when available) via OAuth
-3. **Bot gains access** to your Etsy shop data
-4. **Customers can ask** about products via Telegram
-5. **You manage shop** entirely through your bot
-
-**Status**: 🕐 Etsy API approval pending. Once approved, IFA Etsy App will be released as a companion service.
-
-**Want Etsy integration?** Star this repo and join our [Telegram community](https://t.me/inventoryforagents)!
-
----
-
-## 🤝 Contributing
-
-We welcome contributions!
-
-1. Fork the repo
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community guidelines.
-
----
-
-## 📄 License
-
-**MIT License** - Free for commercial use. Build your product on this!
-
-See [LICENSE](LICENSE) for full details.
-
----
-
-## 🌐 Community
-
-- 💬 **Telegram**: [t.me/inventoryforagents](https://t.me/inventoryforagents)
-- 🐦 **Twitter**: [@agentinventory](https://x.com/agentinventory)
-- 🌍 **Website**: [inventoryforagents.xyz](https://inventoryforagents.xyz)
-- 🐙 **GitHub**: Issues & Discussions
-
----
-
-## 🎯 Roadmap
-
-- [x] **Telegram support** (production-ready)
-- [x] **Claude Opus 4.5 integration**
-- [ ] **Etsy OAuth integration** (awaiting API approval)
-- [ ] **WhatsApp integration** (planned)
-- [ ] **Discord support** (planned)
-- [ ] **Multi-language support** (planned)
-- [ ] **Voice messages** (planned)
-
----
-
-## 🆘 Support
-
-- **Documentation**: [docs/](docs/)
-- **FAQ**: [FAQ.md](FAQ.md)
-- **Issues**: [GitHub Issues](https://github.com/bolivian-peru/inventory-agents/issues)
-- **Community**: [Telegram Group](https://t.me/inventoryforagents)
-
----
-
-## 🏆 Built With
-
-- **[OpenClaw](https://openclaw.ai)** - Agent runtime and channel management
-- **[Claude API](https://anthropic.com)** - AI language model (Opus 4.5)
-- **[Telegram Bot API](https://core.telegram.org/bots)** - Messaging platform
-- **[Hetzner Cloud](https://hetzner.com)** - Recommended hosting
-
----
-
-## 📊 Stats
-
-- ✅ **Production-ready** (deployed for real customers)
-- ⚡ **<500ms** response time average
-- 🚀 **99.9%** uptime in production
-- 🌍 **Deploy anywhere** (Hetzner, AWS, DigitalOcean, etc.)
-- 💪 **Handles 1000+ msgs/hour** on single VPS
+- **[OpenClaw](https://github.com/openclaw/openclaw)** — Agent runtime
+- **[Claude](https://anthropic.com)** — AI model
+- **[Hetzner](https://hetzner.cloud/?ref=nXcA4WhTDugS)** — Recommended hosting
 
 ---
 
 <div align="center">
 
-**Deploy your AI Telegram bot in 15 minutes** ⚡
+## The Future of Commerce is Autonomous
 
-[Get Started](docs/DEPLOYMENT.md) • [View Demo](https://t.me/agentsinventory_bot) • [Documentation](docs/)
+Every creator deserves an AI assistant.
+
+We're building it.
+
+**[⭐ Star this repo](https://github.com/bolivian-peru/inventory-agents)** · **[💬 Join Telegram](https://t.me/inventoryforagents)** · **[💎 $IFA Token](https://pump.fun/coin/GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump)**
 
 ---
 
-### ⭐ Star this repo if you're building with AI agents! ⭐
+**MIT License** — Open source, forever.
 
-**Powered by [Inventory For Agents](https://inventoryforagents.xyz)**
-
-*Etsy integration coming soon - pending API approval from Etsy*
+<sub>Beta software. Features in development. $IFA is an experimental token — DYOR.</sub>
 
 </div>

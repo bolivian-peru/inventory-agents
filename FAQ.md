@@ -1,128 +1,223 @@
-# Frequently Asked Questions
+# FAQ — Frequently Asked Questions
 
-## General Questions
+> *Everything you need to know about IFA*
 
-### What is Inventory For Agents (IFA)?
-IFA is an **early-stage, open-source** AI agent platform that enables e-commerce sellers to deploy autonomous AI assistants that know their product catalog and answer customer questions 24/7.
+---
 
-**Current Status**: Backend infrastructure is production-ready. Etsy App Store integration pending API approval (1-3 weeks). Perfect for developers who want to build on agent infrastructure or contribute.
+## General
+
+### What is IFA?
+
+**IFA (Inventory For Agents)** gives every Etsy and Shopify seller their own AI sales agent. Your agent knows your products, answers customer questions 24/7, and helps close sales.
+
+Think of it as your first AI employee.
+
+### Is this just another chatbot?
+
+No. Chatbots are dumb — they follow scripts and frustrate customers.
+
+IFA agents are different:
+- They **know your products** (not generic responses)
+- They **understand context** (powered by Claude Opus)
+- They **sound human** (customizable personality)
+- They **actually help** (not just deflect to FAQs)
 
 ### Who is this for?
-- **Etsy Sellers**: Install from Etsy App Store for instant setup
-- **Developers**: Fork the open source agent infrastructure for custom implementations
+
+- Etsy sellers
+- Shopify store owners
+- Small DTC brands
+- Solo creators who need help scaling
+- Anyone tired of answering the same questions 100x
 
 ---
 
-## For Etsy Sellers
+## Technical
 
-### Do I need an Etsy developer account?
-**No.** If you install from the Etsy App Store, you just click "Allow" to authorize. No technical knowledge required.
+### Do I need to be technical?
 
-### Do I need my own API keys?
-**No.** The hosted service handles all API integrations. You just connect your shop.
+**Current state:** You need to be comfortable with basic terminal commands. The deploy script does most of the work, but you'll SSH into a server.
 
-### How long does setup take?
-**When launched:** About 2 minutes. Install from Etsy App Store, click "Allow", and your agent is live.
+**Coming soon:** One-click deploy with zero terminal. Join our [Telegram](https://t.me/inventoryforagents) to get notified.
 
-**Currently:** The Etsy App Store listing is pending approval. For developers, self-hosting takes 15-30 minutes following our [deployment guide](backend/DEVELOPER_DEPLOYMENT.md).
+### What's the tech stack?
 
-### Where is my data stored?
-On secure cloud infrastructure. Your shop data is encrypted and only used to power your AI agent.
-
-### Can I customize the agent?
-Yes, through the dashboard you can adjust the agent's personality and behavior.
-
----
-
-## For Developers
-
-### Can I self-host this?
-**Yes.** The agent infrastructure is open source. See [DEVELOPER_DEPLOYMENT.md](backend/DEVELOPER_DEPLOYMENT.md).
-
-### Do I need Etsy API keys to self-host?
-**Yes,** if you want Etsy integration. You'll need to apply for an Etsy developer account and create your own Etsy API app.
-
-Alternatively, you can use the infrastructure for other platforms (Shopify, custom APIs, etc.) without Etsy.
-
-### What's included in the open source release?
-- Complete agent infrastructure (provisioning, messaging, queue system)
-- Claude AI integration code
-- Skills plugin architecture
-- Deployment scripts
-- Full documentation
-
-### What's NOT open source?
-- The hosted service dashboard
-- Etsy OAuth integration layer (specific to our app)
-- Production configurations
-
-### Can I build a competing service?
-**Yes.** The MIT license allows commercial use. You're free to fork and build your own service.
-
-### Can I use this for platforms other than Etsy?
-**Absolutely.** The agent infrastructure is platform-agnostic. You can create plugins for Shopify, Amazon, WooCommerce, or any custom API.
-
----
-
-## Technical Questions
-
-### What AI model does this use?
-Claude (Anthropic) powers the agents. You can configure which model version in your deployment.
-
-### How does the agent know about my products?
-The system syncs your product catalog and creates embeddings for semantic search. The agent has real-time access to inventory data.
-
-### Can the agent make sales?
-Not directly. It answers questions, provides recommendations, and can share product links. Actual purchases happen through your normal checkout flow.
-
-### What messaging platforms are supported?
-- WhatsApp
-- Telegram
-- Email (coming soon)
-- Custom webhooks
-
-### How much does it cost?
-
-**Hosted Service (Etsy App Store):**
-- Pricing to be announced
-
-**Self-Hosted (Developers):**
-- Server: ~$15-30/month (Hetzner VPS)
-- Anthropic API: Pay-as-you-go for Claude usage
-- No licensing fees (MIT license)
-
----
-
-## Security & Privacy
+| Component | What |
+|-----------|------|
+| Agent Runtime | [OpenClaw](https://github.com/openclaw/openclaw) |
+| AI Model | Claude Opus 4.5 (Anthropic) |
+| Hosting | Your own VPS (Hetzner recommended) |
+| Messaging | Telegram (WhatsApp coming) |
 
 ### Is my data safe?
-Yes. OAuth tokens are encrypted with AES-256-GCM. Passwords use bcrypt hashing. All data is stored securely.
 
-### Do you sell my data?
-**No.** Your shop and customer data is only used to power your AI agent.
+**Yes.** Your agent runs on YOUR server. We never see:
+- Your products
+- Your customers
+- Your conversations
+- Your API keys
 
-### Can I delete my account?
-Yes, at any time. All your data will be permanently deleted.
+That's the whole point of self-hosting.
 
-### Is this GDPR compliant?
-Yes, the infrastructure supports GDPR requirements including data deletion and export.
+### What are the costs?
+
+| Item | Monthly |
+|------|---------|
+| VPS (Hetzner CX22) | ~$15 |
+| Anthropic API | ~$10-50 (usage-based) |
+| **Total** | **$25-65** |
+
+No per-message fees. No platform cuts. Just your infrastructure costs.
 
 ---
 
-## Support
+## $IFA Token
+
+### What is $IFA?
+
+$IFA is the community token for IFA holders. It's how we align incentives between builders, contributors, and believers.
+
+**Contract:** `GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump`
+
+### What's the utility?
+
+| Utility | Description |
+|---------|-------------|
+| **Bounties** | Contributors get paid in $IFA |
+| **Governance** | Token holders shape the roadmap |
+| **Early Access** | Priority for new features |
+| **Alignment** | Community success = token success |
+
+### Is this a good investment?
+
+**We can't tell you that.** $IFA is an experimental community token. It could go to zero. It could moon. 
+
+What we CAN tell you:
+- We ship code daily
+- The repo is open source
+- The community is active
+- We're building something real
+
+DYOR. NFA.
+
+### Where can I buy $IFA?
+
+[Pump.fun](https://pump.fun/coin/GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump)
+
+---
+
+## Features
+
+### What messaging platforms are supported?
+
+| Platform | Status |
+|----------|--------|
+| Telegram | ✅ Live |
+| WhatsApp | 🚧 Q1 2026 |
+| Discord | 📋 Planned |
+| Instagram DM | 📋 Planned |
+
+### Can it connect to my Etsy shop automatically?
+
+**Coming soon.** We're waiting on Etsy API approval. Once approved:
+- One-click Etsy OAuth
+- Auto product sync
+- Real-time inventory updates
+
+Star the repo to get notified!
+
+### Can I customize the agent's personality?
+
+**Yes!** Edit `SOUL.md` in your workspace. You control:
+- Voice and tone
+- Personality traits
+- What it will/won't say
+- Brand guidelines
+
+### Can it handle multiple languages?
+
+Not yet, but it's on the roadmap. Claude Opus speaks many languages, so the foundation is there.
+
+---
+
+## Troubleshooting
+
+### Agent not responding
+
+```bash
+# Check status
+openclaw status
+
+# Check logs
+openclaw logs --lines 50
+
+# Restart
+openclaw gateway restart
+```
+
+### Telegram bot not working
+
+1. Verify token with @BotFather
+2. Check `openclaw status` for Telegram
+3. Make sure no other bot uses the same token
+
+### Products not showing up
+
+1. Check `~/.openclaw/workspace/products.md` exists
+2. Verify the format matches the template
+3. Ask the bot "what products do you have?"
+
+### API rate limits
+
+Anthropic has rate limits. If you hit them:
+- Wait a few minutes
+- Consider upgrading your Anthropic tier
+- Contact Anthropic support
+
+---
+
+## Community
 
 ### How do I get help?
-- **Documentation**: Full docs at [/docs](docs/)
-- **GitHub Issues**: [Report bugs or request features](https://github.com/bolivian-peru/inventory-agents/issues)
 
-### Is there a community?
-- **GitHub**: [github.com/bolivian-peru/agents-inventory](https://github.com/bolivian-peru/agents-inventory)
-- **Telegram**: [t.me/inventoryforagents](https://t.me/inventoryforagents)
-- **Twitter**: [@agentinventory](https://x.com/agentinventory)
+1. Check this FAQ
+2. Read the [docs](https://github.com/bolivian-peru/inventory-agents)
+3. Join [Telegram](https://t.me/inventoryforagents)
+4. Open a [GitHub issue](https://github.com/bolivian-peru/inventory-agents/issues)
 
-### Can I contribute to the project?
-Yes! See [CONTRIBUTING.md](backend/CONTRIBUTING.md) for guidelines.
+### How can I contribute?
+
+1. Fork the repo
+2. Build something cool
+3. Submit a PR
+4. Get paid in $IFA
+
+See [open bounties](https://github.com/bolivian-peru/inventory-agents/issues?q=label%3Abounty).
+
+### Who's building this?
+
+A small team of builders + a growing community of 200+ in Telegram.
+
+We ship daily. Check the commits.
 
 ---
 
-**Still have questions?** [Open an issue on GitHub](https://github.com/bolivian-peru/inventory-agents/issues)
+## Links
+
+| Resource | URL |
+|----------|-----|
+| Website | [inventoryforagents.xyz](https://inventoryforagents.xyz) |
+| GitHub | [bolivian-peru/inventory-agents](https://github.com/bolivian-peru/inventory-agents) |
+| Telegram | [t.me/inventoryforagents](https://t.me/inventoryforagents) |
+| Twitter | [@agentinventory](https://x.com/agentinventory) |
+| Token | [$IFA on Pump.fun](https://pump.fun/coin/GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump) |
+
+---
+
+<div align="center">
+
+**Still have questions?**
+
+[Join our Telegram](https://t.me/inventoryforagents) — we're friendly! 💬
+
+</div>

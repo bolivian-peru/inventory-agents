@@ -1,327 +1,242 @@
-# 🤖 ClawdBot Deployment Guide
+# 🚀 Deploy Your AI Sales Agent
 
-> **Deploy AI-powered Telegram bots in 15 minutes using OpenClaw + Claude**
+> **15 minutes. $25/month. Your own AI employee.**
 
----
-
-## 🎯 Architecture
-
-```
-User → Telegram → OpenClaw Gateway → Claude Opus → Response
-```
-
-**That's it!** No custom backend required for basic AI bot functionality.
-
-**Coming Soon**: Etsy shop integration (pending Etsy API approval)
+Your customers get instant answers while you sleep. No coding required.
 
 ---
 
-## 🚀 15-Minute Deployment
+## ⚡ The Stack
 
-### Prerequisites
+| Layer | What |
+|-------|------|
+| 🧠 Brain | Claude (Anthropic) |
+| 🔧 Runtime | OpenClaw |
+| 💬 Chat | Telegram |
+| 📦 Products | Markdown files |
 
-- VPS server (Hetzner recommended, ~$15/month)
-- Telegram bot token (from [@BotFather](https://t.me/BotFather))
-- Anthropic API key ([get one here](https://console.anthropic.com))
+**That's it.** No databases. No complex backends. Just files and AI.
 
-### Step 1: Create Your Telegram Bot (2 min)
+---
 
-Open Telegram → Search for **@BotFather**
+## 📋 Prerequisites
 
-```
-/newbot
-Name: Your Bot Name
-Username: yourbot_bot
-```
+| Item | Where to Get It |
+|------|-----------------|
+| VPS Server | [Hetzner](https://hetzner.cloud/?ref=nXcA4WhTDugS) (~$15/mo) |
+| Anthropic API Key | [console.anthropic.com](https://console.anthropic.com) |
+| Telegram Bot Token | [@BotFather](https://t.me/BotFather) |
 
-Save the token: `1234567890:ABCdef...`
+**Total Cost: ~$25-65/month** (you own everything)
 
-### Step 2: Set Up Server (3 min)
+---
+
+## 🎯 Option 1: One-Command Deploy
 
 ```bash
-# SSH to your VPS
-ssh root@your-server-ip
+# SSH to your server
+ssh root@YOUR_SERVER_IP
 
-# Install Node.js 18+
-curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+# Run the magic
+curl -fsSL https://raw.githubusercontent.com/bolivian-peru/inventory-agents/main/scripts/deploy.sh | bash
+```
+
+The script handles everything:
+- ✅ Installs Node.js & OpenClaw
+- ✅ Configures your AI agent
+- ✅ Sets up Telegram
+- ✅ Starts your agent
+
+**Done in 5 minutes.**
+
+---
+
+## 🔧 Option 2: Manual Setup
+
+### Step 1: Install Dependencies
+
+```bash
+# Node.js 22
+curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 apt install -y nodejs
 
-# Install OpenClaw globally
+# OpenClaw
 npm install -g openclaw
-
-# Verify installation
-openclaw --version  # Should show 2026.1.30 or later
 ```
 
-### Step 3: Configure OpenClaw (5 min)
+### Step 2: Configure OpenClaw
 
 ```bash
-# Set up basic config
-mkdir -p ~/.openclaw
-openclaw config set gateway.mode local
+# Set your API key
+export ANTHROPIC_API_KEY="sk-ant-your-key"
+
+# Configure Claude Opus 4.5
 openclaw config set agents.defaults.model.primary anthropic/claude-opus-4-5
 
-# Set API keys in systemd service
-SERVICE_FILE=~/.config/systemd/user/openclaw-gateway.service
-mkdir -p ~/.config/systemd/user
-
-# Add environment variables to systemd service
-# (Replace with your actual keys)
-cat >> $SERVICE_FILE << 'EOF'
-[Service]
-Environment="ANTHROPIC_API_KEY=your-anthropic-key-here"
-Environment="OPENCLAW_TELEGRAM_TOKEN=your-telegram-bot-token-here"
-EOF
-
-# Create required directories
-mkdir -p ~/.openclaw/agents/main/sessions
-mkdir -p ~/.openclaw/credentials
-```
-
-### Step 4: Enable Telegram Plugin (2 min)
-
-```bash
-# Enable the Telegram channel plugin
+# Enable Telegram
 openclaw plugins enable telegram
-
-# Reload systemd configuration
-systemctl --user daemon-reload
-
-# Install and start gateway
-openclaw gateway install
-systemctl --user start openclaw-gateway.service
-
-# Verify it's running
-openclaw gateway status  # Should show "running"
 ```
 
-### Step 5: Configure Telegram Channel (3 min)
+### Step 3: Set Up Agent Workspace
 
 ```bash
-# Add your Telegram bot
+mkdir -p ~/.openclaw/workspace/skills
+cd ~/.openclaw/workspace
+
+# Get the IFA templates
+curl -O https://raw.githubusercontent.com/bolivian-peru/inventory-agents/main/templates/CLAUDE.md
+curl -O https://raw.githubusercontent.com/bolivian-peru/inventory-agents/main/templates/SOUL.md
+curl -O https://raw.githubusercontent.com/bolivian-peru/inventory-agents/main/templates/products.md
+```
+
+### Step 4: Add Telegram
+
+```bash
 openclaw channels add \
   --channel telegram \
-  --account default \
-  --name "My AI Bot" \
-  --token "YOUR_TELEGRAM_BOT_TOKEN"
-
-# Verify channel is active
-openclaw channels status
-# Should show: "Telegram default: enabled, configured, running"
+  --name "My Shop Agent" \
+  --token "YOUR_BOT_TOKEN"
 ```
 
-### Step 6: Approve Your Access
-
-1. Open Telegram and message your bot
-2. You'll receive a pairing code
-3. On the server, approve it:
+### Step 5: Launch
 
 ```bash
-openclaw pairing approve telegram <YOUR_PAIRING_CODE>
+# Start the gateway
+openclaw gateway start
+
+# Or install as service (recommended)
+openclaw gateway install
+systemctl --user start openclaw-gateway
 ```
 
-4. Message the bot again - it should now respond with AI! 🎉
-
 ---
 
-## 🧪 Testing
-
-Send these messages to your bot:
-
-- `/start` - Welcome message
-- `Hello!` - Natural conversation
-- `What can you do?` - Bot capabilities
-- Any question - AI-powered response using Claude Opus 4.5
-
----
-
-## 📊 Production Monitoring
-
-### Check Status
+## ✅ Verify It Works
 
 ```bash
-# Gateway health
-openclaw gateway status
-openclaw doctor
+# Check status
+openclaw status
 
-# Check logs
-journalctl --user -u openclaw-gateway.service -n 100
-
-# Channel status
-openclaw channels status
+# Watch logs
+openclaw logs -f
 ```
 
-### Using PM2 (Recommended)
+Then open Telegram, find your bot, send `/start`.
+
+**Your AI employee is live.** 🎉
+
+---
+
+## 📦 Adding Products
+
+Edit `~/.openclaw/workspace/products.md`:
+
+```markdown
+## Silver Moon Necklace
+
+- **Price:** $34.00
+- **Quantity:** 10 in stock
+- **Materials:** Sterling silver
+- **Description:** Delicate crescent moon pendant on 18" chain
+
+Tags: jewelry, necklace, moon, silver, gift
+```
+
+Your agent instantly knows about new products. No restart needed.
+
+---
+
+## 🔗 Connect Etsy (Optional)
+
+Want automatic product sync?
 
 ```bash
-# Install PM2
-npm install -g pm2
-
-# Stop systemd service
-systemctl --user stop openclaw-gateway.service
-systemctl --user disable openclaw-gateway.service
-
-# Start with PM2 for better monitoring
-pm2 start "openclaw gateway" --name openclaw-gateway
-pm2 save
-pm2 startup
-
-# Monitor
-pm2 status
-pm2 logs openclaw-gateway
+cd /opt
+git clone https://github.com/bolivian-peru/inventory-agents
+cd inventory-agents/api
+npm install
+cp .env.example .env
+# Add your Etsy credentials
+npm run build && npm start
 ```
 
----
-
-## 💰 Cost Breakdown
-
-| Component | Cost/Month | Notes |
-|-----------|-----------|-------|
-| **VPS** | $15 | Hetzner CCX13 (8GB RAM) |
-| **Anthropic API** | $10-50 | Pay per usage |
-| **Total** | **$25-65/month** | Scales with usage |
-
-**No per-user fees. Full control. Self-hosted.**
-
----
-
-## 🔒 Security
-
-✅ **Self-hosted** - You own the data
-✅ **No data sharing** - Everything on your server
-✅ **Encrypted** - TLS for all API calls
-✅ **Token auth** - Secure gateway access
-✅ **SSH-only** - No public ports except SSH
+Visit `https://your-domain/etsy/auth` to connect.
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Gateway Won't Start
+### Agent not responding?
 
 ```bash
-# Check logs
-journalctl --user -u openclaw-gateway.service -n 50
-
-# Verify config
-openclaw doctor
-
-# Fix issues
-openclaw doctor --fix
+openclaw status          # Is it running?
+openclaw logs --lines 50 # What's it saying?
+openclaw gateway restart # Turn it off and on again
 ```
 
-### Bot Not Responding
+### Telegram not connecting?
 
-```bash
-# 1. Check channel status
-openclaw channels status
+1. Check token with @BotFather
+2. Verify with `openclaw status`
+3. Make sure no other bot uses same token
 
-# 2. Verify Telegram plugin enabled
-openclaw plugins list | grep telegram
+### Products not showing?
 
-# 3. Check gateway is running
-openclaw gateway status
-
-# 4. View recent logs
-tail -100 /tmp/openclaw/openclaw-2026-02-02.log
-```
-
-### Pairing Issues
-
-```bash
-# List pending pairings
-openclaw pairing list --channel telegram
-
-# Approve a user
-openclaw pairing approve telegram <CODE>
-```
+1. Check `products.md` exists
+2. Verify markdown format
+3. Ask bot: "what products do you have?"
 
 ---
 
-## 🔄 Updates
+## 📊 Cost Breakdown
+
+| Item | Monthly |
+|------|---------|
+| Hetzner CX22 | ~$15 |
+| Anthropic API | ~$10-50 |
+| **Total** | **$25-65** |
+
+**No per-message fees. No platform cuts. Pure margin.**
+
+---
+
+## 🔄 Updating
 
 ```bash
-# Update OpenClaw to latest version
+# Update OpenClaw
 npm update -g openclaw
 
-# Restart gateway
-systemctl --user restart openclaw-gateway.service
-# OR with PM2:
-pm2 restart openclaw-gateway
+# Get latest templates
+cd ~/.openclaw/workspace
+curl -O https://raw.githubusercontent.com/bolivian-peru/inventory-agents/main/templates/CLAUDE.md
 ```
 
 ---
 
-## 📈 Scaling
+## 🆘 Support
 
-### Single Bot
-- 1 server handles ~1000 messages/hour
-- Perfect for small to medium businesses
-
-### Multiple Bots
-Use OpenClaw profiles for isolation:
-
-```bash
-# Deploy multiple bots on one server
-openclaw --profile bot1 gateway install
-openclaw --profile bot2 gateway install
-
-# Each gets isolated config:
-~/.openclaw-bot1/
-~/.openclaw-bot2/
-```
+| Resource | Link |
+|----------|------|
+| 📖 Docs | [This repo](https://github.com/bolivian-peru/inventory-agents) |
+| 💬 Community | [Telegram](https://t.me/inventoryforagents) |
+| 🐛 Issues | [GitHub Issues](https://github.com/bolivian-peru/inventory-agents/issues) |
 
 ---
 
-## 🌟 Real-World Example
+<div align="center">
 
-**[Inventory For Agents](https://inventoryforagents.xyz)** uses ClawdBot to power [@agentsinventory_bot](https://t.me/agentsinventory_bot).
+### Your AI employee is waiting.
 
-**Features:**
-- Natural AI conversations
-- Product inventory queries (coming with Etsy integration)
-- 24/7 customer support
-- Full Etsy shop integration (pending API approval)
+**15 minutes to deploy. 24/7 customer service.**
 
-Try it: [@agentsinventory_bot](https://t.me/agentsinventory_bot)
+[🌐 Website](https://inventoryforagents.xyz) · [💬 Telegram](https://t.me/inventoryforagents) · [🐦 Twitter](https://x.com/agentinventory)
 
 ---
 
-## 🔌 Etsy Integration (Coming Soon)
+**$IFA** — The token powering autonomous commerce
 
-We're building full Etsy shop integration for ClawdBot. Features include:
+[Buy on Pump.fun](https://pump.fun/coin/GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump)
 
-- Real-time inventory sync
-- Product queries via Telegram
-- Order management
-- Shop analytics
+`GdRFrMAUF6J4e4FrogFuDPQmv6kQAT197NeeY7ropump`
 
-**Status**: Awaiting Etsy API approval. Once approved, we'll add:
-- OAuth connection flow
-- Secure credential storage
-- Etsy API integration guide
-
----
-
-## 📚 Additional Resources
-
-- **OpenClaw Docs**: https://docs.openclaw.ai
-- **OpenClaw GitHub**: https://github.com/openclaw/openclaw
-- **Claude API**: https://docs.anthropic.com
-- **Telegram Bot API**: https://core.telegram.org/bots
-
----
-
-## 📞 Support
-
-- **Documentation**: [Full docs](/)
-- **Issues**: [GitHub Issues](https://github.com/bolivian-peru/inventory-agents/issues)
-- **Community**: [Telegram Group](https://t.me/inventoryforagents)
-- **Website**: [inventoryforagents.xyz](https://inventoryforagents.xyz)
-
----
-
-**Last Updated**: February 2026
-**Tested On**: Hetzner CCX13, Ubuntu 24.04, OpenClaw 2026.1.30
-**Production Bot**: @agentsinventory_bot
-**Status**: ✅ Production-ready
+</div>

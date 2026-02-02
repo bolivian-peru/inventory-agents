@@ -1,57 +1,134 @@
-# Security Policy
+# 🔒 Security Policy
 
-## Reporting a Vulnerability
+> **Your shop data stays yours.**
 
-We take security seriously. If you discover a security vulnerability, please report it responsibly.
+---
 
-**DO NOT** open a public GitHub issue for security vulnerabilities.
+## 🚨 Reporting Vulnerabilities
 
-### How to Report
+Found a security issue? **Don't open a public issue.**
 
-Email: security@inventoryforagents.xyz
+**Email:** security@inventoryforagents.xyz
 
 Include:
-- Description of the vulnerability
+- Description of the issue
 - Steps to reproduce
 - Potential impact
-- Suggested fix (if any)
+- Suggested fix (if you have one)
 
-### What to Expect
+### Response Time
 
-- **Acknowledgment**: Within 48 hours
-- **Updates**: Regular progress updates
-- **Resolution**: We aim to resolve critical issues within 7 days
+| Action | Timeline |
+|--------|----------|
+| Acknowledgment | 48 hours |
+| Updates | Weekly |
+| Critical fixes | 7 days |
 
-### Disclosure Policy
+We'll credit you (if desired) when the fix ships.
 
-- We will work with you to understand and resolve the issue
-- We will keep you updated on our progress
-- We will publicly acknowledge your responsible disclosure (if desired)
+---
 
-## Supported Versions
+## ✅ Security Features
 
-| Version | Supported          |
-| ------- | ------------------ |
-| Latest  | :white_check_mark: |
-| < 1.0   | :x:                |
+### Self-Hosted (You Control)
+| Feature | Implementation |
+|---------|----------------|
+| Data isolation | Your server only |
+| No telemetry | Nothing phones home |
+| Encrypted storage | Your choice |
+| Access control | Telegram allowlist |
 
-## Security Features
+### When Using Etsy Sync API
+| Feature | Implementation |
+|---------|----------------|
+| Token encryption | AES-256-GCM |
+| Transport | TLS 1.3 |
+| API auth | JWT + rate limiting |
+| Input validation | Zod schemas |
 
-- AES-256-GCM encryption for OAuth tokens
-- bcrypt password hashing (12 rounds)
-- JWT authentication
-- Rate limiting on all endpoints
-- Input validation with Zod schemas
-- SQL injection prevention via Drizzle ORM
+---
 
-## Security Best Practices
+## 🛡️ Best Practices
 
-When self-hosting, ensure:
-- Strong JWT secrets (32+ characters)
-- Secure database passwords
-- HTTPS/TLS enabled
-- Regular security updates
-- Firewall configuration
-- Restricted database access
+When self-hosting:
 
-See [backend/SECURITY_CONFIG.md](backend/SECURITY_CONFIG.md) for detailed security configuration.
+```bash
+# 1. Firewall — only what's needed
+ufw default deny incoming
+ufw allow 22/tcp    # SSH
+ufw allow 443/tcp   # HTTPS (if needed)
+ufw enable
+
+# 2. Updates — stay current
+apt update && apt upgrade -y
+npm update -g openclaw
+
+# 3. Keys — strong and unique
+# Use 32+ character secrets
+# Never commit API keys
+
+# 4. Backups — because stuff happens
+# Backup ~/.openclaw/workspace regularly
+```
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────┐
+│         YOUR SERVER                 │
+│                                     │
+│  ┌─────────────┐  ┌─────────────┐   │
+│  │  OpenClaw   │  │  products   │   │
+│  │  (agent)    │←→│  .md files  │   │
+│  └─────────────┘  └─────────────┘   │
+│         ↕                           │
+│  ┌─────────────┐                    │
+│  │  Telegram   │                    │
+│  │  (outbound) │                    │
+│  └─────────────┘                    │
+│                                     │
+│  No inbound ports needed            │
+│  No database                        │
+│  No external dependencies           │
+└─────────────────────────────────────┘
+```
+
+**Your data never leaves your server** (except Telegram messages to your customers).
+
+---
+
+## 📋 Supported Versions
+
+| Version | Supported |
+|---------|-----------|
+| Latest | ✅ |
+| < 1.0 | ❌ |
+
+Always use the latest release.
+
+---
+
+## 🤝 Responsible Disclosure
+
+We appreciate security researchers who:
+- Give us time to fix before public disclosure
+- Don't access/modify other users' data
+- Act in good faith
+
+We'll work with you and publicly credit contributions.
+
+---
+
+<div align="center">
+
+**Security is a feature, not an afterthought.**
+
+Questions? [security@inventoryforagents.xyz](mailto:security@inventoryforagents.xyz)
+
+---
+
+[🌐 Website](https://inventoryforagents.xyz) · [💬 Telegram](https://t.me/inventoryforagents)
+
+</div>
