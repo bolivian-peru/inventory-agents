@@ -68,6 +68,14 @@
 - 🤖 **Operate autonomously** without technical knowledge
 - 🔒 **Run in isolated, secure workspaces**
 
+### Powered by OpenClaw
+
+Each seller gets their own dedicated AI agent powered by **[OpenClaw](https://openclaw.ai/)** - a personal AI assistant platform that provides isolated workspaces and secure agent execution.
+
+- 🏗️ **Workspace Isolation**: Every seller has their own OpenClaw workspace
+- 🔐 **Secure Execution**: Agents run in sandboxed environments
+- 🔌 **Extensible**: Plugin-based architecture for custom capabilities
+
 This is production-grade infrastructure for the AI agent economy.
 
 ---
@@ -108,10 +116,11 @@ agents-inventory/
 ## 💻 Technology Stack
 
 ### Backend (Open Source)
+- **[OpenClaw](https://openclaw.ai/)** - Agent workspace runtime (CORE)
+- **Claude AI** - Large language model (via Anthropic)
 - **Hono.js** - Fast TypeScript web framework
 - **PostgreSQL** - Database with Drizzle ORM
 - **Redis** - Queue & cache
-- **Claude AI** - Agent runtime
 - **Docker** - Containerized deployment
 
 ### Frontend
@@ -239,7 +248,8 @@ We take security seriously:
 
 ## 🙏 Built With
 
-- [Claude AI](https://claude.ai) - Powers the agents
+- [OpenClaw](https://openclaw.ai/) - Agent workspace runtime (CORE INFRASTRUCTURE)
+- [Claude AI](https://claude.ai) - Large language model
 - [Hono.js](https://hono.dev) - Web framework
 - [Drizzle ORM](https://orm.drizzle.team) - Database toolkit
 - [Next.js](https://nextjs.org) - React framework
