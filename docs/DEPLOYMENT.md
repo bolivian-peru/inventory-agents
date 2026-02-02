@@ -192,7 +192,7 @@ openclaw gateway restart # Turn it off and on again
 
 | Item | Monthly |
 |------|---------|
-| Hetzner CX22 | ~$15 |
+| [Hetzner](https://hetzner.cloud/?ref=nXcA4WhTDugS) CX22 | ~$15 |
 | Anthropic API | ~$10-50 |
 | **Total** | **$25-65** |
 

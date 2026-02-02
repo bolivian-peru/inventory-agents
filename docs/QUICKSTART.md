@@ -10,7 +10,7 @@ The fastest path from zero to "my bot just answered a customer."
 
 | Item | Get It |
 |------|--------|
-| Hetzner account | [hetzner.com](https://hetzner.com) |
+| Hetzner account | [Hetzner Cloud](https://hetzner.cloud/?ref=nXcA4WhTDugS) |
 | Telegram bot | [@BotFather](https://t.me/BotFather) |
 | Anthropic key | [console.anthropic.com](https://console.anthropic.com) |
 
@@ -20,7 +20,7 @@ The fastest path from zero to "my bot just answered a customer."
 
 ## 🖥️ Step 1: Create Server (3 min)
 
-1. Go to [Hetzner Cloud Console](https://console.hetzner.cloud)
+1. Go to [Hetzner Cloud Console](https://hetzner.cloud/?ref=nXcA4WhTDugS)
 2. New Project → "my-shop-ai"
 3. **Add Server**:
    - Location: Helsinki (or nearest)

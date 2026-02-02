@@ -46,7 +46,7 @@ IFA agents are different:
 |-----------|------|
 | Agent Runtime | [OpenClaw](https://github.com/openclaw/openclaw) |
 | AI Model | Claude Opus 4.5 (Anthropic) |
-| Hosting | Your own VPS (Hetzner recommended) |
+| Hosting | Your own VPS ([Hetzner](https://hetzner.cloud/?ref=nXcA4WhTDugS) recommended) |
 | Messaging | Telegram (WhatsApp coming) |
 
 ### Is my data safe?
@@ -63,7 +63,7 @@ That's the whole point of self-hosting.
 
 | Item | Monthly |
 |------|---------|
-| VPS (Hetzner CX22) | ~$15 |
+| VPS ([Hetzner](https://hetzner.cloud/?ref=nXcA4WhTDugS) CX22) | ~$15 |
 | Anthropic API | ~$10-50 (usage-based) |
 | **Total** | **$25-65** |
 
