@@ -8,18 +8,43 @@
 
 ---
 
+## ⚠️ Project Status: Early MVP
+
+### ✅ What Works Today:
+- **Backend Infrastructure**: Production-ready API (live at app.inventoryforagents.xyz)
+- **Authentication**: JWT + bcrypt, rate limiting, encryption
+- **Agent System**: Workspace provisioning, job queue, process management
+- **OAuth Framework**: Complete PKCE implementation for platform integrations
+- **Database**: PostgreSQL with full schema, migrations, encryption
+
+### 🚧 In Active Development:
+- **Etsy Integration**: Code complete, pending Etsy API approval (1-3 weeks)
+- **Messaging Channels**: WhatsApp QR generation working, full integration pending
+- **Test Coverage**: Framework setup, tests being written
+- **Dashboard**: Basic UI exists, production version in progress
+
+### 📅 Planned:
+- Etsy App Store listing (Q1 2026)
+- Production dashboard with analytics
+- Billing/subscription system
+- Multi-platform support (Shopify, Amazon)
+
+**This is real infrastructure, not vaporware** - but it's early stage. Perfect for developers who want to build on top of agent infrastructure or contribute to the platform.
+
+---
+
 ## 🎯 Two Ways to Use IFA
 
 ### 🛍️ For Etsy Sellers (Simple)
 
-**Install from Etsy App Store** → [Coming Soon]
+**Install from Etsy App Store** → [Coming Q1 2026]
 
-- ✅ No technical knowledge required
-- ✅ 2-minute setup
-- ✅ AI agent answers customer questions 24/7
-- ✅ Knows your entire product catalog
+- 🚧 No technical knowledge required *(when App Store launches)*
+- 🚧 2-minute setup *(pending Etsy approval)*
+- 🚧 AI agent answers customer questions 24/7 *(backend ready)*
+- 🚧 Knows your entire product catalog *(sync code complete)*
 
-**[📖 Installation Guide](INSTALL_FROM_ETSY.md)**
+**[📖 Installation Guide](INSTALL_FROM_ETSY.md)** *(for future reference)*
 
 ### 👨‍💻 For Developers (Advanced)
 
@@ -100,13 +125,13 @@ agents-inventory/
 ## ✨ Features
 
 ### For End Users (Etsy Sellers)
-- ✅ One-click installation from Etsy App Store
-- ✅ Automatic product catalog sync
-- ✅ 24/7 customer question answering
-- ✅ Multi-channel messaging (WhatsApp, Telegram)
-- ✅ No technical setup required
+- 🚧 One-click installation from Etsy App Store *(pending Etsy approval)*
+- 🚧 Automatic product catalog sync *(code ready, needs Etsy API)*
+- 🚧 24/7 customer question answering *(agent system ready, needs messaging)*
+- 🚧 Multi-channel messaging (WhatsApp, Telegram) *(in progress)*
+- 🚧 No technical setup required *(when App Store launches)*
 
-### For Developers (Self-Hosting)
+### For Developers (Self-Hosting) - Available Now
 - ✅ Complete agent infrastructure code
 - ✅ Multi-tenant workspace isolation
 - ✅ OAuth 2.0 integration framework
